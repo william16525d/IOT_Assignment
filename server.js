@@ -7,6 +7,10 @@ const events = [];
 app.use(express.json());
 app.use(express.static(__dirname));
 
+app.get("/", (req, res) => {
+  res.sendFile(__dirname + "/events.html");
+});
+
 app.post("/api/trash_event", (req, res) => {
   const { event } = req.body;
   if (!event) return res.status(400).send("Missing event");

@@ -1,0 +1,63 @@
+body {
+  background: #f8f9fa;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+}
+
+.auth-container {
+  background: #fff;
+  padding: 2rem;
+  border-radius: 0.5rem;
+  box-shadow: 0 0 15px rgb(0 0 0 / 0.1);
+  width: 100%;
+  max-width: 400px;
+}
+
+.nav-tabs {
+  margin-bottom: 1.5rem;
+}
+
+.password-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center; /* vertical center */
+  width: 100%;
+}
+
+.password-wrapper input {
+  flex: 1; /* take full width except icon */
+  padding-right: 2.5rem; /* space for icon */
+  height: 2.75rem;
+  font-size: 1rem;
+  box-sizing: border-box;
+}
+
+.password-toggle {
+  position: absolute;
+  right: 12px;
+  cursor: pointer;
+  color: #6c757d;
+  font-size: 1.3rem;
+  user-select: none;
+  transition: color 0.2s ease;
+  /* No top or transform needed now */
+  top: 50%; /* optional fallback */
+  transform: translateY(-50%);
+}
+
+.password-toggle:hover {
+  color: #0d6efd;
+}
+
+/* Responsive tweaks */
+@media (max-width: 400px) {
+  body {
+    padding: 10px;
+  }
+  .auth-container {
+    padding: 1.5rem 1rem;
+  }
+}

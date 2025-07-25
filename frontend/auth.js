@@ -1,4 +1,3 @@
-// Login form handler
 document.getElementById("loginForm").addEventListener("submit", async (e) => {
   e.preventDefault();
 
@@ -19,9 +18,10 @@ document.getElementById("loginForm").addEventListener("submit", async (e) => {
     const data = await res.json();
 
     if (res.ok) {
+      localStorage.setItem("token", data.token);
       msgEl.textContent = "Login successful!";
       msgEl.className = "text-success";
-      window.location.href = "index.html"; // ✅ redirect after login
+      window.location.href = "index.html";
     } else {
       msgEl.textContent = data.error || "Login failed.";
       msgEl.className = "text-danger";
@@ -31,8 +31,6 @@ document.getElementById("loginForm").addEventListener("submit", async (e) => {
     msgEl.className = "text-danger";
   }
 });
-
-// Signup form handler
 document.getElementById("signupForm").addEventListener("submit", async (e) => {
   e.preventDefault();
 
@@ -54,9 +52,10 @@ document.getElementById("signupForm").addEventListener("submit", async (e) => {
     const data = await res.json();
 
     if (res.ok) {
+      localStorage.setItem("token", data.token);
       msgEl.textContent = "Sign up successful!";
       msgEl.className = "text-success";
-      window.location.href = "index.html"; // ✅ redirect after signup
+      window.location.href = "index.html";
     } else {
       msgEl.textContent = data.error || "Sign up failed.";
       msgEl.className = "text-danger";
@@ -67,8 +66,6 @@ document.getElementById("signupForm").addEventListener("submit", async (e) => {
   }
 });
 
-// Password show/hide toggle
-// Password toggle eye icon logic
 document.querySelectorAll(".password-toggle").forEach((toggle) => {
   toggle.addEventListener("click", () => {
     const targetId = toggle.getAttribute("data-target");
@@ -84,5 +81,3 @@ document.querySelectorAll(".password-toggle").forEach((toggle) => {
     }
   });
 });
-
-// Your existing login/signup form handlers here...

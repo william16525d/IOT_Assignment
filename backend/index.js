@@ -13,10 +13,12 @@ const JWT_SECRET = process.env.JWT_SECRET || "supersecretkey";
 app.use(cors());
 app.use(express.json());
 
-// Serve frontend static files
+app.get("/", (req, res) => {
+  res.redirect("/auth.html");
+});
+
 app.use(express.static(path.join(__dirname, "../frontend")));
 
-// POST /api/signup - create new user with hashed password
 app.post("/api/signup", async (req, res) => {
   const { name, email, password } = req.body;
 
@@ -51,7 +53,6 @@ app.post("/api/signup", async (req, res) => {
   }
 });
 
-// POST /api/login - authenticate user and return JWT token
 app.post("/api/login", async (req, res) => {
   const { email, password } = req.body;
   if (!email || !password)
@@ -65,7 +66,7 @@ app.post("/api/login", async (req, res) => {
     if (!valid) return res.status(401).json({ error: "Invalid credentials" });
 
     const token = jwt.sign({ userId: user.id, email: user.email }, JWT_SECRET, {
-      expiresIn: "1h",
+      expiresIn: "15m",
     });
 
     res.json({ token });
@@ -75,7 +76,6 @@ app.post("/api/login", async (req, res) => {
   }
 });
 
-// POST /api/clear — record new clear timestamp
 app.post("/api/clear", async (req, res) => {
   try {
     const newClear = await prisma.clearEvent.create({});
@@ -86,7 +86,6 @@ app.post("/api/clear", async (req, res) => {
   }
 });
 
-// GET /api/last-cleared — return latest timestamp
 app.get("/api/last-cleared", async (req, res) => {
   try {
     const last = await prisma.clearEvent.findFirst({
@@ -99,11 +98,10 @@ app.get("/api/last-cleared", async (req, res) => {
   }
 });
 
-// Serve index.html only on root path
 app.get("/", (req, res) => {
-  res.sendFile(path.join(__dirname, "../frontend/auth.html"));
+  res.sendFile(path.join(__dirname, "../frontend"));
 });
 
 app.listen(PORT, () => {
-  console.log(`Server running at http://localhost:${PORT}/auth.html`);
+  console.log(`Server running at http://localhost:${PORT}`);
 });

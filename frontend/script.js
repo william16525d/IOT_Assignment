@@ -1,3 +1,7 @@
+if (!localStorage.getItem("token")) {
+  window.location.href = "auth.html";
+}
+
 const channelId = 3008487;
 const readApiKey = "4E7OWSTNKK3PCWQ4";
 
@@ -10,6 +14,11 @@ function mapEventCode(code) {
   if (code === "1") return "Trash Thrown";
   if (code === "2") return "Bin Full";
   return "Unknown Event";
+}
+
+function logout() {
+  localStorage.removeItem("token");
+  window.location.href = "auth.html";
 }
 
 async function getLastClearedTimestamp() {
@@ -93,6 +102,5 @@ clearBtn.addEventListener("click", async () => {
   }
 });
 
-// Initial load and auto refresh
 fetchEvents();
 setInterval(fetchEvents, 15000);

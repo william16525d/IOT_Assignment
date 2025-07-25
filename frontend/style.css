@@ -1,0 +1,14 @@
+body {
+  font-family: Arial, sans-serif;
+}
+
+.list-group-item {
+  font-size: 0.9rem;
+}
+
+.timestamp {
+  font-size: 0.8rem;
+  color: #666;
+  display: block;
+  margin-bottom: 0.3rem;
+}

@@ -1,5 +1,6 @@
 body {
-  background: #f8f9fa;
+  background-image: url("./assets/background-image.jpg");
+  background-size: cover;
   min-height: 100vh;
   display: flex;
   justify-content: center;
@@ -8,9 +9,12 @@ body {
 }
 
 .auth-container {
-  background: #fff;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  color: #fff;
   padding: 2rem;
   border-radius: 0.5rem;
+  border: 2px solid rgba(255, 255, 255, 0.1);
   box-shadow: 0 0 15px rgb(0 0 0 / 0.1);
   width: 100%;
   max-width: 400px;
@@ -20,11 +24,16 @@ body {
   margin-bottom: 1.5rem;
 }
 
+.nav-tabs .nav-link {
+  color: #fff;
+}
+
 .password-wrapper {
   position: relative;
   display: flex;
   align-items: center;
   width: 100%;
+  margin-bottom: 2rem;
 }
 
 .password-wrapper input {
@@ -49,6 +58,10 @@ body {
 
 .password-toggle:hover {
   color: #0d6efd;
+}
+
+.submit-btn {
+  height: 2.75rem;
 }
 
 @media (max-width: 400px) {
